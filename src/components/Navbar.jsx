@@ -1,10 +1,10 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, Menu, X, Search, LogOut } from 'lucide-react';
+import { BookOpen, Menu, X, Search, LogOut, User } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
+const Navbar = ({ isLoggedIn, onLogout, user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -62,14 +62,22 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
                 </Link>
               </>
             ) : (
-              <Link
-                to="/dashboard"
-                className={`transition-colors duration-200 hover:text-orange-600 ${
-                  isActive('/dashboard') ? 'text-orange-600 font-medium' : 'text-gray-700'
-                }`}
-              >
-                Dashboard
-              </Link>
+              <>
+                <Link
+                  to="/dashboard"
+                  className={`transition-colors duration-200 hover:text-orange-600 ${
+                    isActive('/dashboard') ? 'text-orange-600 font-medium' : 'text-gray-700'
+                  }`}
+                >
+                  Dashboard
+                </Link>
+                <div className="flex items-center space-x-2 px-3 py-1 bg-orange-50 rounded-full">
+                  <User className="h-4 w-4 text-orange-600" />
+                  <span className="text-sm font-medium text-orange-700">
+                    {user?.name || 'User'}
+                  </span>
+                </div>
+              </>
             )}
             <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
               <Search className="h-4 w-4 mr-2" />
@@ -134,13 +142,23 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
                 </Link>
               </>
             ) : (
-              <Link
-                to="/dashboard"
-                className="block px-3 py-2 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Dashboard
-              </Link>
+              <>
+                <Link
+                  to="/dashboard"
+                  className="block px-3 py-2 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <div className="px-3 py-2">
+                  <div className="flex items-center space-x-2 px-3 py-2 bg-orange-50 rounded-lg">
+                    <User className="h-4 w-4 text-orange-600" />
+                    <span className="text-sm font-medium text-orange-700">
+                      Welcome, {user?.name || 'User'}
+                    </span>
+                  </div>
+                </div>
+              </>
             )}
             <div className="px-3 py-2">
               <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">

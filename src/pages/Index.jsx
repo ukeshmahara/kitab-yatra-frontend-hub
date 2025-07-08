@@ -26,7 +26,7 @@ const Index = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
-        <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} user={user} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

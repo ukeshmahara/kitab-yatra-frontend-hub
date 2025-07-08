@@ -12,11 +12,20 @@ import {
   ChevronLeft, 
   ChevronRight,
   MapPin,
-  Clock,
-  Heart
+  Heart,
+  Award,
+  Zap,
+  Target
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../components/ui/carousel";
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,11 +54,68 @@ const HomePage = () => {
     }
   ];
 
+  const bookSlideshow = [
+    {
+      id: 1,
+      title: "Engineering Mathematics",
+      author: "B.S. Grewal",
+      price: "Rs. 800",
+      originalPrice: "Rs. 1,500",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Good"
+    },
+    {
+      id: 2,
+      title: "Physics Class 12",
+      author: "HSEB Board",
+      price: "Rs. 350",
+      originalPrice: "Rs. 700",
+      image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Very Good"
+    },
+    {
+      id: 3,
+      title: "Data Structures",
+      author: "Cormen",
+      price: "Rs. 1,200",
+      originalPrice: "Rs. 2,500",
+      image: "https://images.unsplash.com/photo-1555116505-38ab61800975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Excellent"
+    },
+    {
+      id: 4,
+      title: "English Literature",
+      author: "Various Authors",
+      price: "Rs. 450",
+      originalPrice: "Rs. 900",
+      image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Good"
+    },
+    {
+      id: 5,
+      title: "Chemistry Class 11",
+      author: "Dr. Bahl",
+      price: "Rs. 500",
+      originalPrice: "Rs. 1,000",
+      image: "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Very Good"
+    },
+    {
+      id: 6,
+      title: "Computer Science",
+      author: "Sumita Arora",
+      price: "Rs. 650",
+      originalPrice: "Rs. 1,300",
+      image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      condition: "Excellent"
+    }
+  ];
+
   const featuredBooks = [
     {
       id: 1,
       title: "Data Structures and Algorithms",
-      author: "Thomas H. Cormen",
+      author: "Cormen",
       price: "Rs. 1,200",
       originalPrice: "Rs. 2,500",
       condition: "Good",
@@ -119,6 +185,24 @@ const HomePage = () => {
     }
   ];
 
+  const highlights = [
+    {
+      icon: <Award className="h-8 w-8 text-orange-500" />,
+      title: "Trusted Platform",
+      description: "Nepal's #1 secondhand book marketplace"
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-orange-500" />,
+      title: "Quick Delivery",
+      description: "Fast delivery across major cities in Nepal"
+    },
+    {
+      icon: <Target className="h-8 w-8 text-orange-500" />,
+      title: "Quality Assured",
+      description: "Every book is quality checked before listing"
+    }
+  ];
+
   const stats = [
     { number: "25,000+", label: "Happy Students" },
     { number: "50,000+", label: "Books Sold" },
@@ -161,15 +245,15 @@ const HomePage = () => {
               <div className="absolute inset-0 bg-black bg-opacity-50" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white max-w-4xl px-4">
-                  <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
                     {slide.title}
                   </h1>
-                  <p className="text-xl md:text-2xl mb-8 opacity-90">
+                  <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in">
                     {slide.subtitle}
                   </p>
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-3 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-3 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 animate-scale-in"
                   >
                     {slide.cta}
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -205,6 +289,73 @@ const HomePage = () => {
               }`}
             />
           ))}
+        </div>
+      </section>
+
+      {/* Book Slideshow Section */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Latest Books Available
+            </h2>
+            <p className="text-xl text-gray-600">
+              Fresh arrivals from students across Nepal
+            </p>
+          </div>
+
+          <Carousel className="w-full max-w-6xl mx-auto">
+            <CarouselContent className="-ml-1">
+              {bookSlideshow.map((book) => (
+                <CarouselItem key={book.id} className="pl-1 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Card className="hover:shadow-lg transition-shadow duration-300">
+                      <CardContent className="p-0">
+                        <img
+                          src={book.image}
+                          alt={book.title}
+                          className="w-full h-48 object-cover rounded-t-lg"
+                        />
+                        <div className="p-4">
+                          <h3 className="font-semibold text-gray-900 mb-1">{book.title}</h3>
+                          <p className="text-gray-600 text-sm mb-2">{book.author}</p>
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <span className="text-lg font-bold text-orange-600">{book.price}</span>
+                              <span className="text-sm text-gray-500 line-through ml-2">{book.originalPrice}</span>
+                            </div>
+                            <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{book.condition}</span>
+                          </div>
+                          <Button size="sm" className="w-full bg-gradient-to-r from-orange-500 to-amber-500">
+                            View Details
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* Key Highlights */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 to-amber-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {highlights.map((highlight, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  {highlight.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{highlight.title}</h3>
+                <p className="text-gray-600">{highlight.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
