@@ -1,13 +1,60 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import HomePage from '@/components/HomePage';
+import LoginPage from '@/components/LoginPage';
+import RegisterPage from '@/components/RegisterPage';
+import Dashboard from '@/components/Dashboard';
+import AboutPage from '@/components/AboutPage';
+
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  university: string;
+  course: string;
+}
 
 const Index = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  const handleLogin = (userData: User) => {
+    setIsLoggedIn(true);
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <Router>
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
+        <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              isLoggedIn ? (
+                <Dashboard user={user} onLogout={handleLogout} />
+              ) : (
+                <LoginPage onLogin={handleLogin} />
+              )
+            } 
+          />
+        </Routes>
+        <Footer />
       </div>
-    </div>
+    </Router>
   );
 };
 
