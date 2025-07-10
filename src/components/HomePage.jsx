@@ -9,8 +9,6 @@ import {
   Search, 
   Star, 
   ArrowRight, 
-  ChevronLeft, 
-  ChevronRight,
   MapPin,
   Heart,
   Award,
@@ -28,32 +26,6 @@ import {
 } from "../components/ui/carousel";
 
 const HomePage = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      id: 1,
-      title: "Find Your Perfect Textbook",
-      subtitle: "Browse thousands of secondhand books from students across Nepal",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Start Shopping"
-    },
-    {
-      id: 2,
-      title: "Sell Your Books & Earn Money",
-      subtitle: "Turn your old textbooks into cash and help fellow students",
-      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Sell Now"
-    },
-    {
-      id: 3,
-      title: "Save Up to 70% on Textbooks",
-      subtitle: "Quality secondhand books at unbeatable prices",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Browse Deals"
-    }
-  ];
-
   const bookSlideshow = [
     {
       id: 1,
@@ -210,88 +182,8 @@ const HomePage = () => {
     { number: "Rs. 1Cr+", label: "Money Saved" }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
-      {/* Hero Slideshow */}
-      <section className="relative h-[600px] overflow-hidden">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <div className="relative h-full">
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-50" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white max-w-4xl px-4">
-                  <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
-                    {slide.title}
-                  </h1>
-                  <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in">
-                    {slide.subtitle}
-                  </p>
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-3 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 animate-scale-in"
-                  >
-                    {slide.cta}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-300"
-        >
-          <ChevronLeft className="h-6 w-6 text-white" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-300"
-        >
-          <ChevronRight className="h-6 w-6 text-white" />
-        </button>
-
-        {/* Slide Indicators */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
-              }`}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* Book Slideshow Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
