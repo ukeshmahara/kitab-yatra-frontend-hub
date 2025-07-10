@@ -1,14 +1,14 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   BookOpen, 
   Users, 
-  ShieldCheck, 
-  TrendingUp, 
+  ShoppingBag, 
   Star, 
-  ArrowRight, 
-  MapPin,
+  ArrowRight,
+  TrendingUp,
+  Shield,
+  Clock,
   Heart,
   Award,
   Zap,
@@ -49,100 +49,189 @@ const HomePage = () => {
   const featuredBooks = [
     {
       id: 1,
-      title: "Data Structures and Algorithms",
-      author: "Cormen",
-      price: "Rs. 1,200",
-      originalPrice: "Rs. 2,500",
-      condition: "Good",
-      seller: "Rajesh Sharma",
-      location: "Kathmandu",
+      title: "गणित कक्षा १२",
+      author: "शिक्षा मन्त्रालय",
+      price: "Rs. 450",
+      originalPrice: "Rs. 800",
       image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      rating: 4.5
+      condition: "Good",
+      seller: "राम शर्मा"
     },
     {
       id: 2,
-      title: "Physics Class 12",
-      author: "HSEB Board",
-      price: "Rs. 400",
-      originalPrice: "Rs. 800",
-      condition: "Very Good",
-      seller: "Priya Thapa",
-      location: "Pokhara",
+      title: "नेपाली साहित्यको इतिहास",
+      author: "डा. मोहन हिमांशु",
+      price: "Rs. 650",
+      originalPrice: "Rs. 1200",
       image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      rating: 4.8
+      condition: "Very Good",
+      seller: "सीता राई"
     },
     {
       id: 3,
-      title: "English Literature",
-      author: "Various Authors",
-      price: "Rs. 600",
-      originalPrice: "Rs. 1,200",
-      condition: "Excellent",
-      seller: "Amit Gurung",
-      location: "Lalitpur",
+      title: "समाजशास्त्र कक्षा ११",
+      author: "पाठ्यक्रम विकास केन्द्र",
+      price: "Rs. 350",
+      originalPrice: "Rs. 600",
       image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      rating: 4.7
+      condition: "Fair",
+      seller: "अमित गुरुङ"
     },
     {
       id: 4,
-      title: "Mathematics Class 11",
-      author: "Dr. Simkhada",
-      price: "Rs. 350",
-      originalPrice: "Rs. 700",
-      condition: "Good",
-      seller: "Sita Rai",
-      location: "Bhaktapur",
+      title: "भौतिकशास्त्र कक्षा १२",
+      author: "राष्ट्रिय परीक्षा बोर्ड",
+      price: "Rs. 550",
+      originalPrice: "Rs. 950",
       image: "https://images.unsplash.com/photo-1555116505-38ab61800975?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      rating: 4.3
-    }
-  ];
-
-  const features = [
-    {
-      icon: <BookOpen className="h-12 w-12 text-orange-500" />,
-      title: "Wide Selection",
-      description: "Thousands of textbooks across all subjects and levels"
+      condition: "Excellent",
+      seller: "प्रिया थापा"
     },
     {
-      icon: <Users className="h-12 w-12 text-orange-500" />,
-      title: "Student Community",
-      description: "Connect with students from universities across Nepal"
+      id: 5,
+      title: "अंग्रेजी व्याकरण र रचना",
+      author: "डा. केशव प्रसाद उप्रेती",
+      price: "Rs. 420",
+      originalPrice: "Rs. 750",
+      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      condition: "Good",
+      seller: "मिना श्रेष्ठ"
     },
     {
-      icon: <ShieldCheck className="h-12 w-12 text-orange-500" />,
-      title: "Safe & Secure",
-      description: "Verified sellers and secure payment options"
+      id: 6,
+      title: "कम्प्युटर विज्ञान कक्षा ११",
+      author: "शिक्षा मन्त्रालय",
+      price: "Rs. 380",
+      originalPrice: "Rs. 700",
+      image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      condition: "Very Good",
+      seller: "राजेश लामा"
     },
     {
-      icon: <TrendingUp className="h-12 w-12 text-orange-500" />,
-      title: "Best Prices",
-      description: "Save up to 70% compared to new book prices"
+      id: 7,
+      title: "जीवविज्ञान कक्षा १०",
+      author: "जानकी शिक्षा सामग्री केन्द्र",
+      price: "Rs. 290",
+      originalPrice: "Rs. 520",
+      image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      condition: "Good",
+      seller: "सरिता पौडेल"
+    },
+    {
+      id: 8,
+      title: "इतिहास कक्षा ९",
+      author: "पाठ्यक्रम विकास केन्द्र",
+      price: "Rs. 320",
+      originalPrice: "Rs. 580",
+      image: "https://images.unsplash.com/photo-1555116505-38ab61800975?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      condition: "Fair",
+      seller: "दीपक तामाङ"
     }
   ];
 
   const highlights = [
     {
-      icon: <Award className="h-8 w-8 text-orange-500" />,
-      title: "Trusted Platform",
-      description: "Nepal's #1 secondhand book marketplace"
+      id: 1,
+      title: "Wide Selection",
+      description: "Thousands of books from various categories",
+      icon: BookOpen
     },
     {
-      icon: <Zap className="h-8 w-8 text-orange-500" />,
-      title: "Quick Delivery",
-      description: "Fast delivery across major cities in Nepal"
+      id: 2,
+      title: "Great Savings",
+      description: "Save up to 70% on secondhand books",
+      icon: TrendingUp
     },
     {
-      icon: <Target className="h-8 w-8 text-orange-500" />,
-      title: "Quality Assured",
-      description: "Every book is quality checked before listing"
+      id: 3,
+      title: "Secure Transactions",
+      description: "Safe and secure payment options",
+      icon: Shield
+    },
+    {
+      id: 4,
+      title: "Fast Delivery",
+      description: "Quick and reliable delivery across Nepal",
+      icon: Clock
+    }
+  ];
+
+  const keyFeatures = [
+    {
+      id: 1,
+      title: "Wishlist",
+      description: "Save your favorite books for later",
+      icon: Heart
+    },
+    {
+      id: 2,
+      title: "Seller Ratings",
+      description: "Find trusted sellers with high ratings",
+      icon: Star
+    },
+    {
+      id: 3,
+      title: "Rewards Program",
+      description: "Earn points and get exclusive discounts",
+      icon: Award
+    },
+    {
+      id: 4,
+      title: "Instant Buy",
+      description: "Buy books quickly with one click",
+      icon: Zap
+    }
+  ];
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Prakash Shrestha",
+      location: "Kathmandu",
+      text: "KitabYatra is a game-changer! I found all my textbooks at half the price. Highly recommended!",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Anjali Thapa",
+      location: "Pokhara",
+      text: "Selling my old books was so easy. I made some extra cash and helped out other students. Great platform!",
+      rating: 4
+    },
+    {
+      id: 3,
+      name: "Suresh Kumar",
+      location: "Biratnagar",
+      text: "I love the variety of books available. The prices are unbeatable and the delivery is fast. Thank you, KitabYatra!",
+      rating: 5
     }
   ];
 
   const stats = [
-    { number: "25,000+", label: "Happy Students" },
-    { number: "50,000+", label: "Books Sold" },
-    { number: "500+", label: "Schools & Colleges" },
-    { number: "Rs. 1Cr+", label: "Money Saved" }
+    {
+      id: 1,
+      value: "5,000+",
+      label: "Books Listed",
+      icon: BookOpen
+    },
+    {
+      id: 2,
+      value: "2,000+",
+      label: "Happy Users",
+      icon: Users
+    },
+    {
+      id: 3,
+      value: "1,500+",
+      label: "Books Sold",
+      icon: ShoppingBag
+    },
+    {
+      id: 4,
+      value: "4.8/5",
+      label: "Average Rating",
+      icon: Star
+    }
   ];
 
   useEffect(() => {
@@ -224,89 +313,74 @@ const HomePage = () => {
       </section>
 
       {/* Key Highlights */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 to-amber-50">
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {highlights.map((highlight, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  {highlight.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{highlight.title}</h3>
-                <p className="text-gray-600">{highlight.description}</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.map((highlight) => (
+              <Card key={highlight.id} className="border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full shadow-md mb-3">
+                    <highlight.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{highlight.title}</h3>
+                  <p className="text-gray-600">{highlight.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Featured Books */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 to-amber-50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Books
+              Featured Nepali Books
             </h2>
-            <p className="text-xl text-gray-600">
-              Popular textbooks from verified sellers
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover amazing deals on Nepali textbooks and literature from students across Nepal
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {featuredBooks.map((book) => (
-              <Card key={book.id} className="hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <Card key={book.id} className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
                 <CardContent className="p-0">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
+                  <div className="aspect-[3/4] overflow-hidden rounded-t-lg">
+                    <img
+                      src={book.image}
+                      alt={book.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 mb-1">{book.title}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{book.author}</p>
-                    
-                    <div className="flex items-center mb-2">
-                      <div className="flex text-yellow-400">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`h-3 w-3 ${i < Math.floor(book.rating) ? 'fill-current' : ''}`} />
-                        ))}
-                      </div>
-                      <span className="ml-1 text-xs text-gray-500">({book.rating})</span>
-                    </div>
-
+                    <h3 className="font-semibold text-gray-900 mb-1 line-clamp-2">
+                      {book.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-2">{book.author}</p>
                     <div className="flex items-center justify-between mb-2">
-                      <div>
+                      <div className="flex items-center space-x-2">
                         <span className="text-lg font-bold text-orange-600">{book.price}</span>
-                        <span className="text-sm text-gray-500 line-through ml-2">{book.originalPrice}</span>
+                        <span className="text-sm text-gray-500 line-through">{book.originalPrice}</span>
                       </div>
-                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{book.condition}</span>
+                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        {book.condition}
+                      </span>
                     </div>
-
-                    <div className="text-sm text-gray-600 mb-3">
-                      <p>Seller: {book.seller}</p>
-                      <p className="flex items-center">
-                        <MapPin className="h-3 w-3 mr-1" />
-                        {book.location}
-                      </p>
-                    </div>
-
-                    <div className="flex space-x-2">
-                      <Button size="sm" className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500">
-                        Contact Seller
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        <Heart className="h-3 w-3" />
-                      </Button>
-                    </div>
+                    <p className="text-xs text-gray-500 mb-3">Seller: {book.seller}</p>
+                    <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">
+                      View Details
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center">
             <Link to="/dashboard">
-              <Button size="lg" variant="outline" className="border-orange-300 text-orange-600 hover:bg-orange-50">
+              <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300">
                 View All Books
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -315,26 +389,26 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Why Choose KitabYatra */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why Choose KitabYatra?
             </h2>
-            <p className="text-xl text-gray-600">
-              Nepal's most trusted platform for secondhand books
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We offer the best platform to buy and sell secondhand books in Nepal, with amazing features and benefits.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-6">
-                    {feature.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {keyFeatures.map((feature) => (
+              <Card key={feature.id} className="border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full shadow-md mb-3">
+                    <feature.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
                   <p className="text-gray-600">{feature.description}</p>
                 </CardContent>
               </Card>
@@ -343,45 +417,68 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+      {/* Testimonials */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
-            <p className="text-xl opacity-90">Making education affordable for students across Nepal</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              What Our Users Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Read testimonials from our happy users across Nepal who have benefited from KitabYatra.
+            </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <div className="text-4xl font-bold text-orange-400 mb-2">{stat.number}</div>
-                <div className="text-gray-300">{stat.label}</div>
-              </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.id} className="border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-4">
+                  <div className="flex items-center mb-3">
+                    <div className="flex text-yellow-400">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                  <div className="flex items-center">
+                    <Target className="h-5 w-5 mr-2 text-gray-500" />
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">{testimonial.name}</p>
+                      <p className="text-xs text-gray-500">{testimonial.location}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-amber-500">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Book Journey?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join thousands of students who are saving money and sharing knowledge
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register">
-              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
-                Get Started Free
-              </Button>
-            </Link>
-            <Link to="/dashboard">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 px-8 py-3 text-lg font-semibold transition-all duration-300">
-                Browse Books
-              </Button>
-            </Link>
+      {/* Stats */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Impact
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See the impact we're making in the secondhand book market in Nepal.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat) => (
+              <Card key={stat.id} className="border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full shadow-md mb-3">
+                    <stat.icon className="h-6 w-6" />
+                  </div>
+                  <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-gray-600">{stat.label}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

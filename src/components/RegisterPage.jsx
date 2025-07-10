@@ -1,14 +1,14 @@
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, BookOpen, User, Mail, Lock, Phone, MapPin } from 'lucide-react';
+import { Eye, EyeOff, BookOpen, User, Mail, Lock, Phone, MapPin, GraduationCap } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from '../hooks/use-toast';
 
-const RegisterPage = () => {
+const RegisterPage = ({ onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -17,7 +17,9 @@ const RegisterPage = () => {
     password: '',
     confirmPassword: '',
     phone: '',
-    address: ''
+    address: '',
+    university: '',
+    course: ''
   });
   const navigate = useNavigate();
 
@@ -52,7 +54,27 @@ const RegisterPage = () => {
       return;
     }
 
-    // Simulate registration
+    // Store user data in localStorage (simulate registration)
+    const userData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      university: formData.university,
+      course: formData.course,
+      memberSince: new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long' 
+      })
+    };
+    
+    localStorage.setItem('registeredUser', JSON.stringify(userData));
+
+    // Call onRegister if provided
+    if (onRegister) {
+      onRegister(userData);
+    }
+
     toast({
       title: "Success!",
       description: "Your account has been created successfully. Please login.",
@@ -219,6 +241,46 @@ const RegisterPage = () => {
                     onChange={handleChange}
                     className="pl-10 h-12 border-gray-200 focus:border-orange-300 focus:ring-orange-200"
                     placeholder="Enter your address"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* University */}
+              <div className="space-y-2">
+                <Label htmlFor="university" className="text-gray-700 font-medium">
+                  University/College
+                </Label>
+                <div className="relative">
+                  <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    id="university"
+                    name="university"
+                    type="text"
+                    value={formData.university}
+                    onChange={handleChange}
+                    className="pl-10 h-12 border-gray-200 focus:border-orange-300 focus:ring-orange-200"
+                    placeholder="Enter your university/college"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Course */}
+              <div className="space-y-2">
+                <Label htmlFor="course" className="text-gray-700 font-medium">
+                  Course/Stream
+                </Label>
+                <div className="relative">
+                  <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    id="course"
+                    name="course"
+                    type="text"
+                    value={formData.course}
+                    onChange={handleChange}
+                    className="pl-10 h-12 border-gray-200 focus:border-orange-300 focus:ring-orange-200"
+                    placeholder="Enter your course/stream"
                     required
                   />
                 </div>

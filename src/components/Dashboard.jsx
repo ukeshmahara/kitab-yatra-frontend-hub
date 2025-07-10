@@ -27,49 +27,49 @@ const Dashboard = ({ user, onLogout }) => {
   const availableBooks = [
     {
       id: 1,
-      title: "Data Structures and Algorithms",
-      author: "Cormen",
-      price: "Rs. 1,200",
-      originalPrice: "Rs. 2,500",
+      title: "गणित कक्षा १२",
+      author: "शिक्षा मन्त्रालय",
+      price: "Rs. 450",
+      originalPrice: "Rs. 800",
       condition: "Good",
-      seller: "Rajesh Sharma",
-      location: "Kathmandu",
+      seller: "राम शर्मा",
+      location: "काठमाडौं",
       image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       rating: 4.5
     },
     {
       id: 2,
-      title: "Operating Systems",
-      author: "Galvin",
-      price: "Rs. 900",
-      originalPrice: "Rs. 1,800",
+      title: "नेपाली साहित्यको इतिहास",
+      author: "डा. मोहन हिमांशु",
+      price: "Rs. 650",
+      originalPrice: "Rs. 1200",
       condition: "Very Good",
-      seller: "Priya Thapa",
-      location: "Pokhara",
+      seller: "सीता राई",
+      location: "पोखरा",
       image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       rating: 4.8
     },
     {
       id: 3,
-      title: "Physics Class 12",
-      author: "HSEB Board",
-      price: "Rs. 400",
-      originalPrice: "Rs. 800",
-      condition: "Fair",
-      seller: "Amit Gurung",
-      location: "Lalitpur",
+      title: "भौतिकशास्त्र कक्षा १२",
+      author: "राष्ट्रिय परीक्षा बोर्ड",
+      price: "Rs. 550",
+      originalPrice: "Rs. 950",
+      condition: "Excellent",
+      seller: "प्रिया थापा",
+      location: "ललितपुर",
       image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       rating: 4.2
     },
     {
       id: 4,
-      title: "English Literature",
-      author: "Various Authors",
-      price: "Rs. 600",
-      originalPrice: "Rs. 1,200",
-      condition: "Excellent",
-      seller: "Sita Rai",
-      location: "Bhaktapur",
+      title: "अंग्रेजी व्याकरण र रचना",
+      author: "डा. केशव प्रसाद उप्रेती",
+      price: "Rs. 420",
+      originalPrice: "Rs. 750",
+      condition: "Good",
+      seller: "मिना श्रेष्ठ",
+      location: "भक्तपुर",
       image: "https://images.unsplash.com/photo-1555116505-38ab61800975?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
       rating: 4.7
     }
@@ -78,20 +78,20 @@ const Dashboard = ({ user, onLogout }) => {
   const wishlist = [
     {
       id: 1,
-      title: "Machine Learning",
-      author: "Tom Mitchell",
-      price: "Rs. 1,500",
-      seller: "Rahul Kumar",
-      location: "Kathmandu",
+      title: "कम्प्युटर विज्ञान कक्षा ११",
+      author: "शिक्षा मन्त्रालय",
+      price: "Rs. 380",
+      seller: "राजेश लामा",
+      location: "काठमाडौं",
       image: "https://images.unsplash.com/photo-1555116505-38ab61800975?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
     },
     {
       id: 2,
-      title: "Database Systems",
-      author: "Korth",
-      price: "Rs. 800",
-      seller: "Anita Sharma",
-      location: "Pokhara",
+      title: "जीवविज्ञान कक्षा १०",
+      author: "जानकी शिक्षा सामग्री केन्द्र",
+      price: "Rs. 290",
+      seller: "सरिता पौडेल",
+      location: "पोखरा",
       image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
     }
   ];
@@ -99,20 +99,20 @@ const Dashboard = ({ user, onLogout }) => {
   const myOrders = [
     {
       id: 1,
-      title: "Java Programming",
-      author: "Herbert Schildt",
-      price: "Rs. 1,100",
-      seller: "Krishna Lama",
+      title: "समाजशास्त्र कक्षा ११",
+      author: "पाठ्यक्रम विकास केन्द्र",
+      price: "Rs. 350",
+      seller: "अमित गुरुङ",
       status: "Delivered",
       orderDate: "2024-01-15",
       image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
     },
     {
       id: 2,
-      title: "Calculus",
-      author: "James Stewart",
-      price: "Rs. 950",
-      seller: "Maya Shrestha",
+      title: "इतिहास कक्षा ९",
+      author: "पाठ्यक्रम विकास केन्द्र",
+      price: "Rs. 320",
+      seller: "दीपक तामाङ",
       status: "In Transit",
       orderDate: "2024-01-20",
       image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
@@ -147,7 +147,9 @@ const Dashboard = ({ user, onLogout }) => {
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Welcome back, {user?.name || 'Book Lover'}!</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Welcome back, {user?.name || 'Book Lover'}!
+              </h1>
               <p className="text-gray-600 mt-1">Discover amazing secondhand books across Nepal</p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-3">
@@ -380,19 +382,19 @@ const Dashboard = ({ user, onLogout }) => {
                 <CardContent className="space-y-4">
                   <div>
                     <label className="text-sm font-medium text-gray-700">Full Name</label>
-                    <p className="text-gray-900 mt-1">{user?.name}</p>
+                    <p className="text-gray-900 mt-1">{user?.name || 'Not provided'}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-700">Email</label>
-                    <p className="text-gray-900 mt-1">{user?.email}</p>
+                    <p className="text-gray-900 mt-1">{user?.email || 'Not provided'}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-700">Phone</label>
-                    <p className="text-gray-900 mt-1">{user?.phone}</p>
+                    <p className="text-gray-900 mt-1">{user?.phone || 'Not provided'}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-700">Address</label>
-                    <p className="text-gray-900 mt-1">{user?.address}</p>
+                    <p className="text-gray-900 mt-1">{user?.address || 'Not provided'}</p>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
                     <Settings className="h-4 w-4 mr-2" />
@@ -403,20 +405,20 @@ const Dashboard = ({ user, onLogout }) => {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Account Statistics</CardTitle>
+                  <CardTitle>Academic Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
+                    <label className="text-sm font-medium text-gray-700">University/College</label>
+                    <p className="text-gray-900 mt-1">{user?.university || 'Not provided'}</p>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Course/Stream</label>
+                    <p className="text-gray-900 mt-1">{user?.course || 'Not provided'}</p>
+                  </div>
+                  <div>
                     <label className="text-sm font-medium text-gray-700">Member Since</label>
-                    <p className="text-gray-900 mt-1">January 2024</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Total Orders</label>
-                    <p className="text-gray-900 mt-1">8 orders</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Money Saved</label>
-                    <p className="text-gray-900 mt-1">Rs. 12,000</p>
+                    <p className="text-gray-900 mt-1">{user?.memberSince || 'January 2024'}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-700">Buyer Rating</label>
